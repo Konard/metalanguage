@@ -1,11 +1,11 @@
-function generateTextFromParsed(parsed) {
+function synthesis(parsed) {
     if (!parsed) return "";
     return parsed.reduce((acc, element) => {
         if (element.type === '{}') {
-            return acc + '{' + generateTextFromParsed(element.content) + '}';
+            return acc + '{' + synthesis(element.content) + '}';
         }
         if (element.type === '()') {
-            return acc + '(' + generateTextFromParsed(element.content) + ')';
+            return acc + '(' + synthesis(element.content) + ')';
         }
         if (element.type === 'text') {
             return acc + element.value;
@@ -13,7 +13,10 @@ function generateTextFromParsed(parsed) {
     }, "");
 }
 
+module.exports = synthesis;
+
+
 // Usage:
 // const parsed = ... // The result of the parsing.
-// const text = generateTextFromParsed(parsed);
+// const text = synthesis(parsed);
 // console.log(text);
