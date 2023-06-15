@@ -1,12 +1,10 @@
-start
+text
   = s:sequence { return s; }
 
 sequence
-  = items:(braces / text)* { return items; }
+  = elements:(blocks)* { return elements; }
 
-braces
+blocks
   = "(" s:sequence ")" { return {type: '()', content: s} }
   / "{" s:sequence "}" { return {type: '{}', content: s} }
-
-text
-  = c:[^{}()]+ { return {type: 'text', value: c.join("")}; }
+  / c:[^{}()]+ { return {type: '*', content: c.join("")}; }

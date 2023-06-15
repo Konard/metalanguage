@@ -1,8 +1,8 @@
 const PEG = require("pegjs");
 const fs = require("fs");
-const grammar = fs.readFileSync("./mini.grammar.pegjs", "utf8");
+const grammar = fs.readFileSync("./blocks.grammar.pegjs", "utf8");
 const parser = PEG.generate(grammar);
-const synthesis = require('./synthesis');
+const synthesis = require('./blocks.synthesis');
 
 test('Parsing and generating should produce the original input', () => {
     const sourceText = '({Hello} (world))';

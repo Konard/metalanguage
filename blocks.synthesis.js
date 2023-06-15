@@ -7,8 +7,8 @@ function synthesis(parsed) {
         if (element.type === '()') {
             return acc + '(' + synthesis(element.content) + ')';
         }
-        if (element.type === 'text') {
-            return acc + element.value;
+        if (element.type === '*') {
+            return acc + element.content;
         }
     }, "");
 }
